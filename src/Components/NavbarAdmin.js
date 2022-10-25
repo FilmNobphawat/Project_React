@@ -15,17 +15,18 @@ export const NavbarAdmin = () => {
 
     return(
         <div className='navbox'>
-            <div className='leftside'>
+            <div className='banner'>
                 <img src={logo} alt="logo" />
             </div>
-            <div className='rightside'>
-                <div><Link to="/admin" className='navlink'>HOME</Link></div>
-                <div><Link to="/addproduct" className='navlink'>ADD PRODUCT</Link></div>
-                <div><Link to="/discount" className='navlink'>DISCOUNT</Link></div>
-                <div><Link to="/adminorder" className='navlink'>ORDER LIST</Link></div>
-                <div><Link to="/revenue" className='navlink'>รายรับ</Link></div>
-                <div className="btn btn-danger btn-md"
-                onClick = {handleLogout}>LOGOUT</div>
+            <div className=''>
+                <div className='topnav'>
+                    <Link to="/admin" className='navlink'>หน้าหลัก</Link>
+                    <Link to="/addproduct" className='navlink'>เพิ่มสินค้า</Link>
+                    <Link to="/discount" className='navlink'>จัดโปรโมชั่น</Link>
+                    <Link to="/adminorder" className='navlink'>รายการสั่งซื้อ</Link>
+                    <Link to="/revenue" className='navlink'>รายรับ</Link>
+                    <div className="btn-danger btn-md a5 textcentre" onClick = {handleLogout}>ออกจากระบบ</div>
+                </div>
             </div>
         </div>
     )

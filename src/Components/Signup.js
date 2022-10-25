@@ -49,22 +49,22 @@ export const Signup = () => {
         <div className="container">
             <br></br>
             <br></br>
-            <h1>Sign Up</h1>
+            <h1>สมัครสมาชิก</h1>
             <hr></hr>
             {successMsg&&<>
                 <div className="success-msg">{successMsg}</div>
                 <br></br>
             </>}
             <form className="form-group" autoComplete="off" onSubmit={handleSignup}>
-                <label>Full Name</label>
+                <label>ชื่อ</label>
                 <input type="text" className="form-control" required
                 onChange={(e) => setFullName(e.target.value)} value = {fullName}></input>
                 <br></br>
-                <label>Email</label>
+                <label>อีเมล</label>
                 <input type="email" className="form-control" required
                 onChange={(e) => setEmail(e.target.value)} value = {email}></input>
                 <br></br>
-                <label>Password</label>
+                <label>รหัสผ่าน</label>
                 <input type="password" className="form-control" required
                 onChange={(e) => setPassword(e.target.value)} value = {password}></input>
                 <br></br>
@@ -72,14 +72,14 @@ export const Signup = () => {
                 <br></br>
                 <div className="error-msg">{errorconfirmPassword}</div>
                 </>}
-                <label>ConfirmPassword</label>
+                <label>ยืนยันรหัสผ่าน</label>
                 <input type="password" className="form-control" required
                 onChange={(e) => setConfirmPassword(e.target.value)} value = {confirmPassword}></input>
                 <br></br>
                 <div className="btn-box">
-                    <span>Already have an account Login
-                        <Link to="/login" className="link">Here</Link></span>
-                    <button type="submit" className="btn btn-succecc btn-md">NEXT</button>
+                    <span>มีบัญชีอยู่แล้ว ?
+                        <Link to="/login" className="link">เข้าสู่ระบบที่นี่</Link></span>
+                    <button type="submit" className="btn btn-succecc btn-md">ถัดไป</button>
                 </div>
             </form>
             {errorMsg&&<>

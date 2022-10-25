@@ -31,14 +31,14 @@ export const Admin = () => {
             <NavbarAdmin/>
             {products.length > 0 && (
                 <div className="container-fluid">
-                    <h1 className="text-center">Products</h1>
+                    <h1 className="text-center padmar50px">สินค้าทั้งหมด</h1>
                     <div className="products-box">
                         <EditProduct products={products}/>
                     </div>
                 </div>
             )}
             {products.length < 1 && (
-                <div className="container-fluid">Please wait....</div>
+                <div className="container-fluid">กรุณารอสักครู่ ....</div>
             )}
         </div>
     )

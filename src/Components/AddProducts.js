@@ -46,7 +46,8 @@ export const AddProducts = () => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
             console.log(progress);
         },error => setUploadError(error.message),() => {
-            storage.ref('product-images').child(image.name).getDownloadURL(image).then(url =>{
+            storage.ref('product-images').child(image.name).getDownloadURL().then(url =>{
+                console.log(image);
                 fs.collection('Products').add({
                     title,
                     description,
@@ -88,7 +89,7 @@ export const AddProducts = () => {
                     <input type="text" className='form-control' required
                     onChange={(e) => setTitle(e.target.value)} value = {title}></input>
                     <br></br>
-                    <label>รายละเอียนสินค้า</label>
+                    <label>รายละเอียดสินค้า</label>
                     <input type="text" className='form-control' required
                     onChange={(e) => setDescription(e.target.value)} value = {description}></input>
                     <br></br>
@@ -100,7 +101,7 @@ export const AddProducts = () => {
                     <input type="number" className='form-control' required
                     onChange={(e) => setNumberOfProducts(e.target.value)} value = {numberOfProducts}></input>
                     <br></br>
-                    <label>Product Image</label>
+                    <label>รูปภาพสินค้า</label>
                     <input type="file" className='form-control' id="file" required
                     onChange={handleProductImg}></input>
                     {imageError&&<>
@@ -110,7 +111,7 @@ export const AddProducts = () => {
                     <br></br>
                     <div style={{display:'flex',justifyContent:'flex-end'}}>
                         <button type="submit" className="btn btn-success btn-md">
-                            SUBMIT
+                            เพิ่มสินค้า
                         </button>
                     </div>
                 </form>

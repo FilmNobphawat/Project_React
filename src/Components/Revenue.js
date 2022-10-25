@@ -73,33 +73,44 @@ export const Revenue = () => {
         headers: headers,
       };
 
-    return(
-        <div>
+      return(
+        <div className="a5"> 
             <NavbarAdmin/>
             {/*<Dropdown options={options} onChange={setCountDate} value={countdate} placeholder="Select an option" />*/}
-            <table className="table border shadow">
-                <tbody>
-                    <tr>
-                        <th onClick={() => sorting('name')}>ชื่อ</th>
-                        <th onClick={() => sorting('qty')}>จำนวน</th>
-                        <th onClick={() => sorting('TotalPrice')}>ราคา</th>
-                    </tr>
-                    {
-                        orders.map((name,key) => {
-                            return(
-                                <tr key={key}>
-                                    <td>{name.name}</td>
-                                    <td>{name.qty}</td>
-                                    <td>{name.TotalPrice}</td>
-                                </tr>
-                            )}
-                        )
-                    }
-                </tbody>
-            </table>
-            <div>ยอดรวมทั้งหมด {counts}</div>
-            <div>จำนวนทั้งหมด{countQTY}</div>
-            <CSVLink  {...csvReport}>Export to CSV</CSVLink>
+            <h1 className="text-center stepmargin">รายรับ</h1>
+            <body className="text-align:center;">
+                <table className="a5 border shadow padmar50px text-align:center;" align="center">
+                    <tbody className="tbpadding table"align="center">
+                        <tr className="tdcenter">
+                            <th className="tbpadding" width="20%" onClick={() => sorting('name')}>ชื่อ</th>
+                            <th className="tbpadding tdright" onClick={() => sorting('qty')}>จำนวน</th>
+                            <th className="tbpadding tdright" width="150%" onClick={() => sorting('TotalPrice')}>ราคา</th>
+                        </tr>
+                        {
+                            orders.map((name,key) => {
+                                return(
+                                    <tr key={key}>
+                                        <td className="tbpadding">{name.name}</td>
+                                        <td className="tbpadding tdright">{name.qty}</td>
+                                        <td className="tbpadding tdright" width="150%">{name.TotalPrice}</td>
+                                    </tr>
+                                )}
+                            )
+                        }
+                    </tbody>
+                </table>
+                </body>
+            <div>
+                <h2 className="text-center">
+                    จำนวนทั้งหมด {countQTY} รายการ
+                    </h2>
+                    <h2 className="text-center">
+                    ยอดรวมทั้งหมด {counts} บาท
+                    </h2>
+            </div>
+            <div className="text-center margin-bot" align="center">
+            <CSVLink {...csvReport}>ดาวน์โหลดรายงานการขาย Export to CSV</CSVLink>
+            </div>
         </div>
     );
 }

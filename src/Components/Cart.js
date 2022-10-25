@@ -318,44 +318,47 @@ export const Cart = () => {
             <br></br>
             {cartProducts.length > 0 && (
                 <div className="container-fluid">
-                    <h1 className="text-center">Cart</h1>
+                    <h1 className="text-center">ตะกร้าสินค้า</h1>
+                    <label className="stepmargin">Step 1 : เลือกจำนวน</label>
                     <div className="products-box">
                         <CartProduct cartProducts={cartProducts}
                             cartProductIncrease ={cartProductIncrease}
                             cartProductDecrease ={cartProductDecrease}
                         />
                     </div>
+                    <label>Step 2 : ตรวจสอบรายละเอียดและชำระเงิน</label>
                     <div className="summary-box">
-                        <h5>Cart summary</h5>
+                        <h5>ยืนยันคำสั่งซื้อ</h5>
                         <br></br>
                         <div>
-                            Total No of Products : <span>{totalQty}</span>
+                            จำนวนสินค้ารวม : <span>{totalQty}</span>
                         </div>
                         <div>
-                            Total Price to Pay : <span>$ {totalPrice}</span>
+                            ราคาสินค้ารวม : <span>{totalPrice} บาท</span>
                         </div>
                         {discountcount > 0 && (
                             <div>
-                                Total discount to Pay: <span>$ {Math.round(discountcount)}</span>
+                                ยอดรวมหลังหักส่วนลด : <span>{Math.round(discountcount)} บาท</span>
                             </div>
                         )}
-                        <h6>ให้ทำปลาแบบไหน</h6>
-                        <Dropdown options={options} onChange={setDetails} value="ให้ทำปลาแบบไหน" placeholder="Select an option" />
+                        <h6>รูปแบบการจัดทำปลา</h6>
+                        <Dropdown options={options} onChange={setDetails} placeholder="โปรดเลือกรูปแบบ" />
                         <div>
                         {details.label === 'อื่นๆ' && (
-                            <input type="text" required onChange={(e) => {setDamoDetails(e.target.value)}} value={damodetails}/>
+                            <input className="margintop8" type="text" required onChange={(e) => {setDamoDetails(e.target.value)}} value={damodetails}/>
                         )}
                         </div>
-                        <h6>จัดส่งหรือรับเอง</h6>
+                        <h6 className="margintop8">จัดส่งหรือรับเอง</h6>
                         <Dropdown options={options1} onChange={setStatusDelivery} value="จัดส่งหรือรับเอง" placeholder="Select an option" />
                         <br></br>
                         {statusDelivery.label === 'จัดส่ง' && (<>
                             <div>
-                                Delivery to Pay: <span>$ {Math.round(deliveryPrice)}</span>
+                                ค่าจัดส่ง : <span>{Math.round(deliveryPrice)} บาท</span>
                             </div>
                             <div>
-                            total shipping to Pay: <span>$ {Math.round(deliveryPrice+totalPrice)}</span>
+                            ยอดรวมทั้งหมด : <span>{Math.round(deliveryPrice+totalPrice)} บาท</span>
                             </div>
+                            <div>เลือกรูปแบบการชำระเงิน :</div>
                             <StripeChecout
                             stripeKey = 'pk_test_51LoVhZCFsKrvXBJT6RKf3ve6QMC75rLnFfLvo74ybSoDhTgEBPLUcNQR7HvvJPm4HaDtYHw6cBgwDnQMTKua5OzG00GTHKHzKi'
                             token={handleToken}
@@ -364,17 +367,17 @@ export const Cart = () => {
                             name="All Products"
                             amount={totalPrice * 100}>
                             </StripeChecout>
-                            <h6 style={{marginTop:7+"px"}}>OR</h6>
-                            <div className="btn btn-danger btn-md cart-btn" onClick={() => triggerModal()}>Pay With QR</div>
+                            <h6 style={{marginTop:7+"px"}}>หรือ</h6>
+                            <div className="btn btn-danger btn-md cart-btn" onClick={() => triggerModal()}>จ่ายด้วย QR</div>
                             </>
                         )}
                         <br></br>
-                        <div className="btn btn-danger btn-md cart-btn" onClick={addToOrder}>ADD TO CART</div>
+                        <div className="btn btn-danger btn-md cart-btn" onClick={addToOrder}>เพิ่มในตะกร้า</div>
                     </div>
                 </div>
             )}
             {cartProducts.length < 1 && (
-                <div className="container-fluid">No product to show</div>
+                <div className="container-fluid">ไม่มีสินค้าให้แสดง</div>
             )}
 
             {showModal === true && (

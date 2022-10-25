@@ -29,7 +29,7 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
         })
     }
 
-    return(
+    return( 
         <div className="product">
             <div className="product-img">
                 <img src={cartProduct.url} alt = "product-img"/>
@@ -37,9 +37,21 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
             <div className="product-text title">ชื่อ: {cartProduct.title}</div>
             <div className="product-text description">รายละเอียด: {cartProduct.description}</div>
             <div className="product-text price">ราคา: {cartProduct.price}/กิโลกรัม</div>
-            <span>จำนวน</span>
-            {cartProduct.numberOfProducts === 0 && (<><div className="error-msg">สินค้าหมดแล้ว</div></>)}
-            <div className="product-text quantity-box">
+            <div className="product-quantity"> 
+                
+                {cartProduct.numberOfProducts === 0 && (<><div class="product-quantity-c">
+		            <a onClick = {headleCartProductDecrease}>&times;</a>
+
+                    จำนวนสินค้าไม่พอ
+
+	            </div></>)}
+
+                {cartProduct.numberOfProducts >0 && (<>
+                    <div className="product-quantity-l">
+                    จำนวน
+                </div>
+                <div className="product-quantity-r">
+                <div className="product-text quantity-box">
                 <div className="action-btns minus">
                     <Icon icon={minus} size={20} onClick = {headleCartProductDecrease}/>
                 </div>
@@ -47,9 +59,25 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
                 <div className="action-btns plus">
                 <Icon icon={plus} size={20} onClick = {headleCartProductIncrease}/>
                 </div>
+            </div>   </div>             
+                </>)}
+                
+
             </div>
-            <div className="product-text cart-price">$ {cartProduct.TotalProductPrice}</div>
-            <div className="btn btn-danger btn-md cart-btn" onClick = {headleCartProductDelete}>DELETE</div>
+
+            
+
+
+            <div className="product-text cart-price">ราคาสุทธิ {cartProduct.TotalProductPrice} บาท</div>
+            <div className="product-bt">
+                <div className="btn btn-danger btn-md cart-btn" onClick = {headleCartProductDelete}>นำออกจากตะกร้า</div>
+            </div>
+
+
+
+            
         </div>
+
+        
     )
 }

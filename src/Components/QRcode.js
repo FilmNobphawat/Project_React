@@ -26,10 +26,10 @@ export const QRcode = (props) =>  {
 
     return(
         <div className="shade-area" >
-            <div className="modal-container">
-                <img src={QR} alt="QR" width='500px' height='700px'/>
+            <div className="modal-container" width='50%'>
+                <img src={QR} alt="QR" width='400px' height='100%'/>
                 <br></br>
-                <label>ส่งสลิป</label> 
+                <label className="margintop8">ส่งสลิป</label> 
                 <input type="file" className='form-control' id="file" required
                     onChange={handleProductImg}></input>
                 {imageError&&<>
@@ -37,7 +37,7 @@ export const QRcode = (props) =>  {
                     <div className="error-msg">{imageError}</div>
                 </>}
                 <br></br>
-                <button onClick={() => {onBgClick(image)}}>Submit</button>
+                <button className="rebuybutton" onClick={() => {onBgClick(image)}}>Submit</button>
             </div>
         </div>
     )

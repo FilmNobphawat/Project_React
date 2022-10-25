@@ -2,6 +2,7 @@ import React,{useState, useEffect} from "react";
 import firebase from 'firebase/compat/app'
 import { Navbar } from "./Navbar";
 import {auth, fs} from '../config/config';
+import PLASOD from '../image/PLASOD.jpg'
 
 export const About = () => {
 
@@ -53,7 +54,8 @@ export const About = () => {
     return(
         <>
         <Navbar user = {user} totalProducts = {totalProducts}/>
-        <h1>ABOUT</h1>
+        <h1 className="text-center">เกี่ยวกับเรา</h1>
+        <img className="center-img" src={PLASOD} alt="About us" width='800px' height='100%'/>
         </>
     )
 }

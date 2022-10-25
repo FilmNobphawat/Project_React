@@ -18,31 +18,33 @@ export const Navbar = ({user,totalProducts}) => {
 
     return(
         <div className='navbox'>
-            <div className='leftside'>
+            <div className='banner'>
                 <img src={logo} alt="logo" />
             </div>
-            <div className='rightside'>
+            <div className=''>
                 {!user && <>
-                    <div><Link to="signup" className='navlink'>SIGN UP</Link></div>
-                    <div><Link to="login" className='navlink'>LOGIN</Link></div>
-                    <div><Link to="/contact" className='navlink'>CONTACT</Link></div>
+                    <div className="topnav">
+                        <Link to="signup" className='navlink'>สมัครสมาชิก</Link>
+                        <Link to="login" className='navlink'>เข้าสู่ระบบ</Link>
+                        <Link to="/contact" className='navlink'>ติดต่อ</Link>
+                    </div>
                 </>}
                 {user && <>
-                <div><Link to="/" className='navlink'>{user}</Link></div>
-                <div className="cart-menu-btn">
-                    <Link to="/cart" className='navlink'>
-                        <Icon icon={shoppingCart} size={20} />
-                        </Link>
-                        <span className="cart-indicator">{totalProducts}</span>
-                </div>
-                <div><Link to="/order" className='navlink'>ORDER</Link></div>
-                <div><Link to="/contact" className='navlink'>CONTACT</Link></div>
-                <div><Link to="/user" className='navlink'>USER</Link></div>
-                <div><Link to="/about" className='navlink'>ABOUT</Link></div>
-                <div><Link to="/promotion" className='navlink'>PROMOTION</Link></div>
-                <div className="btn btn-danger btn-md"
-                onClick = {handleLogout}>LOGOUT</div>
-            </>}
+                    <div className='topnav'>
+                        <a className="textwhite navinfo">ยินดีต้อนรับ คุณ{user}</a>
+                        <Link to="/" className='navlink'>สินค้าทั้งหมด</Link>   
+                        <Link to="/cart" className='navcart'>ดูตะกร้าสินค้า ({totalProducts})</Link>             
+                        <Link to="/promotion" className='navlink'>โปรโมชั่น</Link>
+                        <Link to="/order" className='navlink'>ประวัติการสั่งซื้อ</Link>
+                        <Link to="/contact" className='navlink'>ติดต่อ</Link>
+                        <Link to="/about" className='navlink'>เกี่ยวกับ</Link>
+                    
+                        <div className="btn-danger btn-md" onClick = {handleLogout}>ออกจากระบบ</div>
+                    </div>
+
+                    <div className='topbar padmar15px'>
+                    </div>
+                </>}
             </div>
         </div>
     )

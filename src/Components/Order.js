@@ -151,13 +151,14 @@ export const Order = () => {
     return (
         <div>
             <Navbar user = {user} totalProducts = {totalProducts}/>
+            <h1 className="text-center">ประวัติการสั่งซื้อ</h1>
             <table className="table border shadow">
                 <tbody>
-                    <tr>
+                    <tr className="tdcenter">
                         <th onClick={() => sorting('date')}>วันที่สั่ง</th>
                         <th onClick={() => sorting('All_Name')}>สินค้า</th>
-                        <th onClick={() => sorting('totalShipping')}>ราคา</th>
-                        <th onClick={() => sorting('totalQty')}>จำนวนสินค้า</th>
+                        <th className="tdright" onClick={() => sorting('totalShipping')}>ราคา</th>
+                        <th className="tdright" onClick={() => sorting('totalQty')}>จำนวนสินค้า</th>
                         <th onClick={() => sorting('details')}>รูปแบบการจัดการ</th>
                         <th onClick={() => sorting('statusDelivery')}>รูปแบบการส่ง</th>
                         <th onClick={() => sorting('status')}>สถานะการจ่ายเงิน</th>
@@ -168,20 +169,20 @@ export const Order = () => {
                             (info,ind) => {
                                 return(
                                     <tr key={ind}>
-                                        <td>{info.date}</td>
-                                        <td>{info.All_Name}</td>
+                                        <td valign="middle" className="tdcenter">{info.date}</td>
+                                        <td className="tdcenter">{info.All_Name}</td>
                                         {info.deliveryPrice === 0 &&(
-                                            <td>{info.totalPrice}</td>
+                                            <td className="tdright tdcenter">{info.totalPrice}</td>
                                         )}
                                         {info.deliveryPrice !== 0 &&(
-                                            <td>{info.totalShipping}</td>
+                                            <td className="tdright tdcenter">{info.totalShipping}</td>
                                         )}
-                                        <td>{info.totalQty}</td>
-                                        <td>{info.details}</td>
-                                        <td>{info.statusDelivery}</td>
-                                        <td>{info.status}</td>
-                                        <td>{info.Product_preparation_status}</td>
-                                        <td><button onClick={() => addToCart(info.ID)}>สั่งซื้อซ้ำ</button></td>
+                                        <td className="tdcenter tdright">{info.totalQty}</td>
+                                        <td className="tdcenter">{info.details}</td>
+                                        <td className="tdcenter">{info.statusDelivery}</td>
+                                        <td className="tdcenter">{info.status}</td>
+                                        <td className="tdcenter">{info.Product_preparation_status}</td>
+                                        <td className="tdcenter"><button className="rebuybutton" onClick={() => addToCart(info.ID)}>สั่งซื้อซ้ำ</button></td>
                                     </tr>
                                 )   
                             }

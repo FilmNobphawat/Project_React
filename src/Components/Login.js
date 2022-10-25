@@ -44,25 +44,25 @@ export const Login = () => {
         <div className="container">
             <br></br>
             <br></br>
-            <h1>Login</h1>
+            <h1>เข้าสู่ระบบ</h1>
             <hr></hr>
             {successMsg&&<>
                 <div className="success-msg">{successMsg}</div>
                 <br></br>
             </>}
             <form className="form-group" autoComplete="off" onSubmit={handleLogin}>
-                <label>Email</label>
+                <label>อีเมล</label>
                 <input type="email" className="form-control" required
                 onChange={(e) => setEmail(e.target.value)} value = {email}></input>
                 <br></br>
-                <label>Password</label>
+                <label>รหัสผ่าน</label>
                 <input type="password" className="form-control" required
                 onChange={(e) => setPassword(e.target.value)} value = {password}></input>
                 <br></br>
                 <div className="btn-box">
-                    <span>Don't have an account SignUp
-                        <Link to="/signup" className="link">Here</Link></span>
-                    <button type="submit" className="btn btn-succecc btn-md">LOGIN</button>
+                    <span>ยังไม่มีบัญชี ?
+                        <Link to="/signup" className="link">สมัครที่นี่</Link></span>
+                    <button type="submit" className="btn btn-succecc btn-md">เข้าสู่ระบบ</button>
                 </div>
             </form>
             {errorMsg&&<>
