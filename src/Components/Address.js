@@ -278,7 +278,7 @@ const uid = GetUserUid();
 
     return (
       <>
-      <Navbar user = {user} totalProducts = {totalProducts}/>
+      {/*<Navbar user = {user} totalProducts = {totalProducts}/>*/}
       <h1>ที่อยู่</h1>
       <input type="text" onChange={(e) => {setAddress(e.target.value)}}/>
       <h1>จังหวัด</h1>
