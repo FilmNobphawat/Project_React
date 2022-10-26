@@ -29,11 +29,11 @@ export const Discount = () => {
       }
 
       const getDiscount = async () => {
-        fs.collection('Discount').doc('M1ORkFWiVDESyjzDZHxU').update({ discount: 0})
-    }
+        fs.collection('Discount').doc('PNwEtfKcuYHzo0NA5Xyn').update({ discount: 0})
+      }
 
       const setDis = (discount) =>{
-        fs.collection('Discount').doc('M1ORkFWiVDESyjzDZHxU').update({ discount: discount})
+        fs.collection('Discount').doc('PNwEtfKcuYHzo0NA5Xyn').update({ discount: discount})
         //setDiss(discount);
         console.log(discount)
       }

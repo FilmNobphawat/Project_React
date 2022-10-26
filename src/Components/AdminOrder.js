@@ -1,11 +1,7 @@
 import React, {useState, useEffect}from "react";
-import firebase from 'firebase/compat/app'
-import {auth,fs} from '../config/config';
+import {fs} from '../config/config';
 import { NavbarAdmin } from "./NavbarAdmin";
-import {useNavigate} from 'react-router-dom';
-import Dropdown from 'react-dropdown';
 import { Slip } from "./Slip";
-import Moment from 'moment';
 
 export const AdminOrder = () => {
 
@@ -14,8 +10,9 @@ export const AdminOrder = () => {
     const [orders,setOrder] = useState([]);
     const [data,setData] = useState("ASC")
 
+    
     useEffect(() => {
-        fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').onSnapshot(snapshot => {
+        fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').onSnapshot(snapshot => {
             const ordersArray = [];
             let i = 0;
             for (var snap of snapshot.docs){
@@ -78,7 +75,7 @@ export const AdminOrder = () => {
             }
         }
         let statusDelivery;
-        const order = await fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').get()
+        const order = await fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').get()
         const orderArray = [];
         for (var snap of order.docs){
             var data = snap.data();
@@ -91,11 +88,11 @@ export const AdminOrder = () => {
                     orderArray[i].status = status;
                     if(status === "success"){
                         statusDelivery = "not success"
-                        fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').doc(orderArray[i].ID).update({status: statusDelivery}).then(() => {console.log('notAdmin')})
+                        fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({status: statusDelivery}).then(() => {console.log('notAdmin')})
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({status: statusDelivery}).then(() => {console.log('notusers')})
                     }else{
                         statusDelivery = "success"
-                        fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').doc(orderArray[i].ID).update({status: statusDelivery}).then(() => {console.log('Admin')})
+                        fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({status: statusDelivery}).then(() => {console.log('Admin')})
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({status: statusDelivery}).then(() => {console.log('users')})
                         for(var k = 0; k < orderArray[i].number_of_product_types; k++){
                             fs.collection('revenue').add({
@@ -131,7 +128,7 @@ export const AdminOrder = () => {
             }
         }
         let statusDelivery;
-        const order = await fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').get()
+        const order = await fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').get()
         const orderArray = [];
         for (var snap of order.docs){
             var data = snap.data();
@@ -144,12 +141,12 @@ export const AdminOrder = () => {
                     orderArray[i].status = status;
                     if(status === "รอการยืนยัน"){
                         statusDelivery = "กำลังจัดส่ง"
-                        fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').doc(orderArray[i].ID).update({Product_preparation_status: statusDelivery}).then(() => {console.log('กำลังจัดส่งAdmin')})
+                        fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({Product_preparation_status: statusDelivery}).then(() => {console.log('กำลังจัดส่งAdmin')})
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({Product_preparation_status: statusDelivery}).then(() => {console.log('กำลังจัดส่งusers')})
                     }
                     else{
                         statusDelivery = "รอการยืนยัน"
-                        fs.collection('Admin').doc("xcOC1eVQvz94ETYwYg3i").collection('Order').doc(orderArray[i].ID).update({Product_preparation_status: statusDelivery}).then(() => {console.log('ส่งสำเร็จAdmin')})
+                        fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({Product_preparation_status: statusDelivery}).then(() => {console.log('ส่งสำเร็จAdmin')})
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({Product_preparation_status: statusDelivery}).then(() => {console.log('ส่งสำเร็จusers')})
                     }
                     breakCondition  = true
