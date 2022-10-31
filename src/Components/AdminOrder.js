@@ -2,6 +2,7 @@ import React, {useState, useEffect}from "react";
 import {fs} from '../config/config';
 import { NavbarAdmin } from "./NavbarAdmin";
 import { Slip } from "./Slip";
+import { MapAdmin } from "./MapAdmin";
 
 export const AdminOrder = () => {
 
@@ -145,7 +146,7 @@ export const AdminOrder = () => {
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({Product_preparation_status: statusDelivery}).then(() => {console.log('กำลังจัดส่งusers')})
                     }
                     else{
-                        statusDelivery = "รอการยืนยัน"
+                        statusDelivery = "จัดส่งสำเร็จ"
                         fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({Product_preparation_status: statusDelivery}).then(() => {console.log('ส่งสำเร็จAdmin')})
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({Product_preparation_status: statusDelivery}).then(() => {console.log('ส่งสำเร็จusers')})
                     }
@@ -156,14 +157,24 @@ export const AdminOrder = () => {
     }
 
     const [showModal,setShowModal] = useState(false);
+    const [showMap,setShowMap] = useState(false);
     const [imageSlip,setImageSlip] = useState(false);
+    const [lat,setLat] = useState(0)
+    const [long,setLong] = useState(0)
     const triggerModal = (image) => {
         setShowModal(true);
         setImageSlip(image);
     }
-
+    const triggerMap = (latitude,longitude) => {
+        setShowMap(true);
+        setLat(latitude)
+        setLong(longitude)
+    }
     function onCloseClick(){
         setShowModal(null)
+    }
+    function onCloseClickMap(){
+        setShowMap(null)
     }
 
     return (
@@ -183,6 +194,7 @@ export const AdminOrder = () => {
                         <th onClick={() => sorting('Slip_url')}>สลิป</th>
                         <th className="tdright" onClick={() => sorting('status')}>สถานะการจ่ายเงิน</th>
                         <th className="tdright" onClick={() => sorting('Product_preparation_status')}>สถานะการจัดส่ง</th>
+                        <th className="tdright" onClick={() => sorting('Product_preparation_status')}>สถานที่จัดส่ง</th>
                     </tr>
                     {
                         orders.map(
@@ -196,16 +208,23 @@ export const AdminOrder = () => {
                                             <td className="tdcenter tdright">{info.totalQty}</td>
                                             <td className="tdcenter">{info.details}</td>
                                             <td className="tdcenter">{info.statusDelivery}</td>
-                                            {info.Slip_url !== null && (
+                                            {info.Slip_url !== null && info.statusDelivery === "จัดส่ง" && (
                                                 <td className="tdcenter" onClick={() => triggerModal(info.Slip_url)}>ดูสลิป</td>
                                             )}
-                                            {info.Slip_url === null && (
+                                            {info.Slip_url === null && info.statusDelivery === "จัดส่ง" && (
                                                 <td className="tdcenter">จ่ายผ่านบัตรเครดิต</td>
                                             )}
+                                            {info.statusDelivery === "รับเอง" &&(
+                                                <td className="tdcenter">จ่ายปลายทาง</td>
+                                            )}
                                             <td className="tdcenter tdright">{info.status}     <button className="rebuybutton" onClick={() => changeStatus(info.status,info.UUID,info.ID,info.date)}>เปลี่ยนสถานะ</button></td>
-                                            <td className="tdcenter tdright">{info.Product_preparation_status}     <button className="rebuybutton" onClick={() => changePreparationStatus(info.Product_preparation_status,info.UUID,info.ID,info.date)}>เปลี่ยนสถานะ</button></td> 
+                                            <td className="tdcenter tdright">{info.Product_preparation_status}     <button className="rebuybutton" onClick={() => changePreparationStatus(info.Product_preparation_status,info.UUID,info.ID,info.date)}>เปลี่ยนสถานะ</button></td>
+                                            <td className="tdcenter tdright"><button className="rebuybutton" onClick={() => triggerMap(info.latitude,info.longitude)}>ดู</button></td> 
                                             {showModal === true && (    
                                             <Slip onBgClick={onCloseClick} imageSlip = {imageSlip}/>
+                                            )}
+                                            {showMap === true && (
+                                            <MapAdmin onBgClick={onCloseClickMap} latitude = {lat} longitude = {long}/>
                                             )} 
                                         </tr>
                                 )

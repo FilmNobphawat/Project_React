@@ -1,5 +1,7 @@
 import React ,{useState}from "react";
 import { Edit } from "./Edit";
+import {auth, fs} from '../config/config';
+import firebase from 'firebase/compat/app'
 
 export const IndividualEdit = ({individualEdit}) => {
 
@@ -12,6 +14,13 @@ export const IndividualEdit = ({individualEdit}) => {
     function onCloseClick(){
         setShowModal(null)   
     }
+
+    const headleProductDelete = () => {  
+        fs.collection('Products').doc(individualEdit.ID).delete().then(()=>{
+            console.log('successfully deleted');
+        })
+    }
+
     return(
         <div className="product">
             <div className="product-img">
@@ -27,6 +36,9 @@ export const IndividualEdit = ({individualEdit}) => {
                 <Edit onBgClick={onCloseClick} individualEdit = {individualEdit}/>
             )
             }
+            </div>
+            <div className="product-bt">
+                <div className="btn btn-danger btn-md cart-btn" onClick = {headleProductDelete}>ลบ</div>
             </div>
         </div>
     )

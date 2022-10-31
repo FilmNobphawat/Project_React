@@ -73,7 +73,9 @@ const uid = GetUserUid();
       province,
       country,
       zipcode,
-      distance
+      distance,
+      latitude,
+      longitude
     }).then(() => {
       setAddress('');
       setProvince('');

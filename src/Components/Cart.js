@@ -171,6 +171,8 @@ export const Cart = () => {
         }else{
             addOr['details'] = details.label;
         }
+        addOr['latitude'] = latitude;
+        addOr['longitude'] = longitude;
         addOr['statusDelivery'] = statusDelivery.label;
         addOr['status'] = status;
         addOr['number_of_product_types'] = totalProducts;
@@ -253,6 +255,8 @@ export const Cart = () => {
     }
 
     const [discountcount,setDiscountCount] = useState(0)
+    const [longitude, setLongitude] = useState(0)
+    const [latitude, setLatitude] = useState(0)
 
     const getDiscount = async () => {
         const discount = await fs.collection('Discount').get();
@@ -290,6 +294,8 @@ export const Cart = () => {
                 }else{
                     setDeliveryPrice(count*20)
                 }
+                setLongitude(discountArray[0].longitude)
+                setLatitude(discountArray[0].latitude)
             }
         }
     }

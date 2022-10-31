@@ -19,12 +19,12 @@ export const Discount = () => {
       const startTimer = start.bind(this);
 
       const minutesTimes = (timerr) =>{
-        state.duration = timerr*1000
+        state.duration = timerr*60*1000
         console.log(state.duration)
       }
 
       const hoursTimes = (timerr) => {
-        state.duration = timerr*60*1000;
+        state.duration = timerr*60*60*1000;
         console.log(state.duration)
       }
 
