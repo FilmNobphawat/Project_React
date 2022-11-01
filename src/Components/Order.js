@@ -151,7 +151,7 @@ export const Order = () => {
     return (
         <div>
             <Navbar user = {user} totalProducts = {totalProducts}/>
-            <h1 className="text-center">ประวัติการสั่งซื้อ</h1>
+            <h1 className="text-center stepmargin marginbottom">ประวัติการสั่งซื้อ</h1>
             <table className="table border shadow">
                 <tbody>
                     <tr className="tdcenter">

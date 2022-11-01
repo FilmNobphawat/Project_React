@@ -54,8 +54,8 @@ export const About = () => {
     return(
         <>
         <Navbar user = {user} totalProducts = {totalProducts}/>
-        <h1 className="text-center">เกี่ยวกับเรา</h1>
-        <img className="center-img" src={PLASOD} alt="About us" width='800px' height='100%'/>
+        {/* <h1 className="text-center">เกี่ยวกับเรา</h1> */}
+        <img className="center-img" src={PLASOD} alt="About us" width='1000px' height='100%'/>
         </>
     )
 }

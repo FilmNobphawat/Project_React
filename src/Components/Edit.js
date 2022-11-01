@@ -38,7 +38,6 @@ export const Edit = (props) => {
         setDescription('')
         setPrice('')
         setNumberOfProducts('')
-        onBgClick()
     }
     return(
         <div className="shade-area">
@@ -60,6 +59,7 @@ export const Edit = (props) => {
                 onChange={(e) => setNumberOfProducts(e.target.value)} value = {numberOfProducts}></input>
                 <br></br>
                 <button onClick={Editer}>Edit</button>
+                <button onClick={onBgClick}>Back</button>
             </div>
         </div>
     )

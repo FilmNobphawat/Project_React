@@ -159,7 +159,7 @@ export const MapAdmin = (props) => {
         return () => map.remove()
       }, [longitude, latitude])
 
-    return(
+      return(
         <div className="shade-area" onClick={onBgClick}>
             <div className="modal-container">
             {map && (

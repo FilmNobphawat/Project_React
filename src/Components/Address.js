@@ -278,37 +278,37 @@ const uid = GetUserUid();
     }
   }
 
-    return (
-      <>
-      {/*<Navbar user = {user} totalProducts = {totalProducts}/>*/}
-      <h1>ที่อยู่</h1>
-      <input type="text" onChange={(e) => {setAddress(e.target.value)}}/>
-      <h1>จังหวัด</h1>
-      <input type="text" onChange={(e) => {setProvince(e.target.value)}}/>
-      <h1>ประเทศ</h1>
-      <input type="text" onChange={(e) => {setCountry(e.target.value)}}/>
-      <h1>รหัสไปรษณีย์</h1>
-      <input type="text" onChange={(e) => {setZipcode(e.target.value)}}/>
-        {map && (
-          <div className="app">
-            <div className="search-bar">
-              <h1>Search Location</h1>
-              <input
-                type="text"
-                id="query"
-                onChange={(e) => {
-                  SearchMap(e.target.value)
-                }}
-              />
-              <button onClick={() => SearchMap(1)} >Search</button>
-              <button onClick={getLocation}>Location</button>
-            </div>
-            <div ref={mapElement} className="map" />
-            <div>
-              <button onClick={handleAddress}>Submit</button>
-            </div>
+  return (
+    <>
+    {/*<Navbar user = {user} totalProducts = {totalProducts}/>*/}
+    <h1>ที่อยู่</h1>
+    <input type="text" onChange={(e) => {setAddress(e.target.value)}}/>
+    <h1>จังหวัด</h1>
+    <input type="text" onChange={(e) => {setProvince(e.target.value)}}/>
+    <h1>ประเทศ</h1>
+    <input type="text" onChange={(e) => {setCountry(e.target.value)}}/>
+    <h1>รหัสไปรษณีย์</h1>
+    <input type="text" onChange={(e) => {setZipcode(e.target.value)}}/>
+      {map && (
+        <div className="app">
+          <div className="search-bar">
+            <h1>Search Location</h1>
+            <input
+              type="text"
+              id="query"
+              onChange={(e) => {
+                SearchMap(e.target.value)
+              }}
+            />
+            <button onClick={() => SearchMap(1)} >Search</button>
+            <button onClick={getLocation}>Location</button>
           </div>
-        )}
-      </>
-    )
+          <div ref={mapElement} className="map" />
+          <div>
+            <button onClick={handleAddress}>Submit</button>
+          </div>
+        </div>
+      )}
+    </>
+  )
 }

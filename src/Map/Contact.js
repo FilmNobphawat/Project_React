@@ -51,19 +51,19 @@ export const Contact = () => {
     }*/
 
     return(
-        <div>
+        <div className="">
             <Navbar user = {user} totalProducts = {totalProducts}/>
-            <div>
-                <h2>Contact</h2>
+            <div className="a3 a1S a5 padmar50px">
                 <div class="mapouter">
                     <div class="gmap_canvas">
-                        <iframe style={{width: "700px",height: "400px"}} src="https://maps.google.com/maps?width=700&amp;height=400&amp;hl=en&amp;q=ตลาดยิ่งเจริญ&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                        <iframe className="a1J aj" style={{width: "700px",height: "400px"}} src="https://maps.google.com/maps?width=700&amp;height=400&amp;hl=en&amp;q=ตลาดยิ่งเจริญ&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                     </div>
                 </div>
-                <div>
-                    <h1>Email: nobphawat.s@ku.th</h1>
-                    <h1>Tel: 095-555-5555</h1>
-                    <h1>Facebook: Nobphawat Srinuanmak</h1>
+                <div className="marleft50">
+                    <h1>ติดต่อ</h1>
+                    <h2>Email: nobphawat.s@ku.th</h2>
+                    <h2>Tel: 095-555-5555</h2>
+                    <h2>Facebook: Nobphawat Srinuanmak</h2>
                 </div>
             </div>
         </div>

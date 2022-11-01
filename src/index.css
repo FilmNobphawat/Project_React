@@ -140,6 +140,7 @@
 
 .product-bt {
     padding-bottom: 12px !important;
+    background-color: floralwhite !important;
 }
 .product-quantity {
     width: 100%;
@@ -193,6 +194,7 @@
     border-radius: 10px;
     box-shadow: 5px 5px 20px 0px #1338be89;
     border: solid 0px rgba(255, 255, 255, 0);
+    background-color: floralwhite !important;
 }
 
 .product:hover {
@@ -233,6 +235,7 @@
     margin-bottom: 10px;
     font-size: 16px;
     text-align: center;
+    background-color: floralwhite !important;
 }
 
 .product .product-text.title{
@@ -252,6 +255,7 @@
 .product .product-text.price{
     font-weight: 600;
     color: #000000;
+    background-color: floralwhite !important;
 }
 
 .product .product-text.numberOfProducts{
@@ -264,6 +268,18 @@
     background-color: #e00a02 !important;
 }
 .cart-btn:hover{
+    background-color: #7b0501 !important;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+.cart2-btn{
+    background-color: #e00a02 !important;
+    width: 150px !important;
+}
+.cart2-btn:hover{
     background-color: #7b0501 !important;
     -webkit-transition: background-color 0.5s;
     -moz-transition: background-color 0.5s;
@@ -299,6 +315,7 @@
     font-weight: 600;
     padding: 5px;
     border: 1px solid #b9b5b5;
+    background-color: floralwhite !important;
     border-radius: 8px;
 }
 
@@ -307,14 +324,42 @@
     cursor: pointer;
 }
 
+.Dropdown-root {
+    background-color: floralwhite !important;
+}
+
+.Dropdown-control {
+    background-color: rgb(255, 255, 255) !important;
+}
+.Dropdown-placeholder {
+    background-color: rgb(255, 255, 255) !important;
+}
+.Dropdown-arrow-wrapper {
+    background-color: rgb(255, 255, 255) !important;
+}
+.Dropdown-arrow {
+    background-color: rgb(255, 255, 255) !important;
+}
+.Dropdown-menu {
+    background-color: rgb(255, 255, 255) !important;
+}
+.Dropdown-option {
+    background-color: rgb(255, 255, 255) !important;
+}
+.Dropdown-option:hover {
+    background-color: rgb(123, 123, 123) !important;
+    color: floralwhite !important;
+}
+
 /* cart summary */
 .summary-box{
-    width: 300px;
-    margin: 30px auto;
+    width: 400px;
+    margin: 20px auto;
     border: 1px solid #b9b5b5;
     display: flex;
     flex-direction: column;
     padding: 30px;
+    background-color: floralwhite !important;
 }
 
 .summary-box h5{
@@ -486,6 +531,14 @@ body {
     margin-left: 50px;
 }
 
+.marleft200 {
+    margin-left: 200px;
+}
+
+.marleft150 {
+    margin-left: 150px;
+}
+
 .bordermap {
     border-color: black;
     border-width: 5px;
@@ -582,4 +635,72 @@ td, tr, th {
 
 label {
     font-size: 25px;
+    text-align: right;
+    display: inline-block;
 }
+
+#login-form {
+    align-self: flex-start;
+    display: grid;
+    justify-items: left;
+    align-items: center;
+  }
+
+  .login-form-field::placeholder {
+    color: #3a3a3a;
+  }
+  
+  .login-form-field {
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    outline: none;
+    padding: 0px 0px 5px 5px;
+  }
+  
+  #login-form-submit {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #3a3a3a;
+    cursor: pointer;
+    outline: none;
+  }
+
+  #login-submit {
+    width: 75%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #3a3a3a;
+    cursor: pointer;
+    outline: none;
+  }
+
+.register {
+    font-size: 15px;
+    /* padding-right: 15px; */
+    margin-right: 15px;
+}
+
+.register-left {
+    font-size: 15px;
+    /* padding-right: 15px; */
+    margin-left: 15px;
+}
+
+.width75 {
+    width: 75%;
+}
+
+.dip {
+    display: inline-block;
+}
+
+div {background-color: #f8ecec;}

@@ -100,7 +100,7 @@ export const Revenue = () => {
                     </tbody>
                 </table>
                 </body>
-            <div>
+            <div className="stepmargin">
                 <h2 className="text-center">
                     จำนวนทั้งหมด {countQTY} รายการ
                     </h2>

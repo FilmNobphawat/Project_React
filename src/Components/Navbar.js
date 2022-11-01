@@ -26,7 +26,7 @@ export const Navbar = ({user,totalProducts}) => {
                     <div className="topnav">
                         <Link to="signup" className='navlink'>สมัครสมาชิก</Link>
                         <Link to="login" className='navlink'>เข้าสู่ระบบ</Link>
-                        <Link to="/contact" className='navlink'>ติดต่อ</Link>
+                      {/* <Link to="/contact" className='navlink'>ติดต่อ</Link> */}
                     </div>
                 </>}
                 {user && <>
@@ -37,7 +37,7 @@ export const Navbar = ({user,totalProducts}) => {
                         <Link to="/promotion" className='navlink'>โปรโมชั่น</Link>
                         <Link to="/order" className='navlink'>ประวัติการสั่งซื้อ</Link>
                         <Link to="/contact" className='navlink'>ติดต่อ</Link>
-                        <Link to="/about" className='navlink'>เกี่ยวกับ</Link>
+                        <Link to="/about" className='navlink'>เกี่ยวกับเรา</Link>
                     
                         <div className="btn-danger btn-md" onClick = {handleLogout}>ออกจากระบบ</div>
                     </div>

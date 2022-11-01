@@ -102,14 +102,14 @@ export const Home = () => {
             <br></br>
             {products.length > 0 && (
                 <div className="container-fluid">
-                    <h1 className="text-center">Products</h1>
+                    <h1 className="text-center marginbottom">สินค้า</h1>
                     <div className="products-box">
                         <Product products={products} addToCart = {addToCart}/>
                     </div>
                 </div>
             )}
             {products.length < 1 && (
-                <div className="container-fluid">Please wait....</div>
+                <div className="container-fluid">กรุณารอสักครู่ ....</div>
             )}
         </div>
     )
