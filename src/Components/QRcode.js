@@ -38,6 +38,7 @@ export const QRcode = (props) =>  {
                 </>}
                 <br></br>
                 <button className="rebuybutton" onClick={() => {onBgClick(image)}}>Submit</button>
+                <button className="rebuybutton" onClick={onBgClick}>Back</button>
             </div>
         </div>
     )
