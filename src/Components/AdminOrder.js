@@ -87,11 +87,6 @@ export const AdminOrder = () => {
             for(var i = 0; i < orderArray.length; i++){
                 if(id === orderArray[i].ID && !breakCondition){
                     orderArray[i].status = status;
-                    if(status === "success"){
-                        statusDelivery = "not success"
-                        fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({status: statusDelivery}).then(() => {console.log('notAdmin')})
-                        fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({status: statusDelivery}).then(() => {console.log('notusers')})
-                    }else{
                         statusDelivery = "success"
                         fs.collection('Admin').doc('lh7WUjZ9hxR0MFZiYzte').collection('Order').doc(orderArray[i].ID).update({status: statusDelivery}).then(() => {console.log('Admin')})
                         fs.collection('users').doc(uuid).collection('Order').doc(orderid).update({status: statusDelivery}).then(() => {console.log('users')})
@@ -102,8 +97,7 @@ export const AdminOrder = () => {
                                 qty : orderArray[i][k].qty,
                                 date : new Date()
                             })                      
-                        }
-                    }
+                        }                   
                     breakCondition  = true
                 }
                 }
