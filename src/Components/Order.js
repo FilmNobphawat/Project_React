@@ -108,6 +108,7 @@ export const Order = () => {
     },[]);
 
     let Pro ;
+    const [error,setError] = useState(null)
     const addToCart = async(id) => {
 
         const products = await fs.collection('Products').get();
@@ -131,15 +132,19 @@ export const Order = () => {
                         }
                     }
                     console.log(Pro.numberOfProducts)
-                    if(uid !== null){
-                        firebase.firestore().collection('users').doc(uid).collection('Cart').doc(Pro.ID).set(Pro).then(() => {
-                        console.log('successfully added to cart')
-                        })
-                        fs.collection('Products').doc(Pro.ID).update({numberOfProducts: Pro.numberOfProducts});
-                        navigate('/cart');
-                    }
-                    else{
-                        navigate('/login');
+                    if(Pro.numberOfProducts > 0){
+                        if(uid !== null){
+                            firebase.firestore().collection('users').doc(uid).collection('Cart').doc(Pro.ID).set(Pro).then(() => {
+                            console.log('successfully added to cart')
+                            })
+                            fs.collection('Products').doc(Pro.ID).update({numberOfProducts: Pro.numberOfProducts});
+                            navigate('/cart');
+                        }
+                        else{
+                            navigate('/login');
+                        }
+                    }else{
+                        setError('สินค้ามีจำนวนไม่พอ')
                     }
                 }
             }
@@ -152,6 +157,9 @@ export const Order = () => {
         <div>
             <Navbar user = {user} totalProducts = {totalProducts}/>
             <h1 className="text-center stepmargin marginbottom">ประวัติการสั่งซื้อ</h1>
+            {error !== null && (
+                <div>{error}</div>
+            )}
             <table className="table border shadow">
                 <tbody>
                     <tr className="tdcenter">
