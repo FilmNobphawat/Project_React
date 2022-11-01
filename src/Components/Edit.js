@@ -38,6 +38,7 @@ export const Edit = (props) => {
         setDescription('')
         setPrice('')
         setNumberOfProducts('')
+        onBgClick()
     }
     return(
         <div className="shade-area">
