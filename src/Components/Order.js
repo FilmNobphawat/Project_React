@@ -3,6 +3,7 @@ import firebase from 'firebase/compat/app'
 import {auth,fs} from '../config/config';
 import { Navbar } from "./Navbar";
 import {useNavigate} from 'react-router-dom'
+import { ShowDetail } from "./ShowDetail";
 
 export const Order = () => {
 
@@ -86,15 +87,19 @@ export const Order = () => {
                             ...data
                         })
                         let names = '';
+                        let detail = '';
                         console.log(ordersArray[i])
                         for (let j = 0;j < ordersArray[i].number_of_product_types;j++){
                             if(j === 0){
                                 names = names+ordersArray[i][j].title;
+                                detail = detail+ordersArray[i][j].title+': '+ordersArray[i][j].details+'  ';
                             }else{
                                 names = names+','+ordersArray[i][j].title;
+                                detail = detail+','+ordersArray[i][j].title+': '+ordersArray[i][j].details+'  ';
                             }
                         }
                         ordersArray[i].All_Name = names
+                        ordersArray[i].All_Detail = detail
                         i = i+1
                         if(ordersArray.length === snapshot.docs.length){
                             i = 0;
@@ -153,12 +158,25 @@ export const Order = () => {
         
     }
 
+    const [showModal,setShowModal] = useState(false);
+    const [showDetail,setShowDetail] = useState('')
+
+    const triggerModal = (detail) => {
+        setShowModal(true);
+        setShowDetail(detail)
+        console.log(detail)
+    }
+
+    function onCloseClick(){
+        setShowModal(null)
+    }
+
     return (
         <div>
             <Navbar user = {user} totalProducts = {totalProducts}/>
             <h1 className="text-center stepmargin marginbottom">ประวัติการสั่งซื้อ</h1>
             {error !== null && (
-                <div>{error}</div>
+                <div className="redbox" >{error}</div>
             )}
             <table className="table border shadow">
                 <tbody>
@@ -186,11 +204,14 @@ export const Order = () => {
                                             <td className="tdright tdcenter">{info.totalShipping}</td>
                                         )}
                                         <td className="tdcenter tdright">{info.totalQty}</td>
-                                        <td className="tdcenter">{info.details}</td>
+                                        <td className="tdcenter"><button className="rebuybutton" onClick={() => triggerModal(info.All_Detail)}>ดูรายการจัดการสินค้า</button></td>
                                         <td className="tdcenter">{info.statusDelivery}</td>
                                         <td className="tdcenter">{info.status}</td>
                                         <td className="tdcenter">{info.Product_preparation_status}</td>
                                         <td className="tdcenter"><button className="rebuybutton" onClick={() => addToCart(info.ID)}>สั่งซื้อซ้ำ</button></td>
+                                        {showModal === true && (    
+                                            <ShowDetail onBgClick={onCloseClick} showDetail = {showDetail}/>
+                                        )}
                                     </tr>
                                 )   
                             }
@@ -201,5 +222,3 @@ export const Order = () => {
         </div>
     );
 }
-
-export default Order;

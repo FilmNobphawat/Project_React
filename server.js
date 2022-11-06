@@ -28,7 +28,7 @@ app.post('/checkout',async(req,res) => {
             customer: customer.id,
             receipt_email: token.email,
             description: 'products descriptions here',
-            shipping:{
+            /*shipping:{
                 name: token.card.name,
                 address: {
                     line1: token.card.address_line1,
@@ -37,7 +37,7 @@ app.post('/checkout',async(req,res) => {
                     country: token.card.address_country,
                     postal_code: token.card.address_zip
                 }
-            }
+            }*/
         },{idempotencyKey: key})
         status = "success";
     }

@@ -154,6 +154,23 @@ export const Cart = () => {
         
     }
 
+    const onsetdetail = async(detail1,cartProducts) =>{
+        console.log(detail1)
+        auth.onAuthStateChanged(user => {
+            if(user){
+                if(detail1.label === "ตัวหัวผ่าท้อง" || detail1.label === "ถอดเกล็ดอย่างเดียว" || detail1.label === "ผ่าท้องอย่างเดียว" || detail1.label === "ไม่ต้องทำอะไร" || detail1.label === "อื่นๆ"){
+                    firebase.firestore().collection('users').doc(user.uid).collection('Cart').doc(cartProducts.ID).update({details: detail1.label}).then(() => {
+                        console.log('detail')
+                    })
+                }else{
+                    firebase.firestore().collection('users').doc(user.uid).collection('Cart').doc(cartProducts.ID).update({details: detail1}).then(() => {
+                        console.log('detail')
+                    })
+                }
+            }
+        })
+    }
+
     const [uploadError,setUploadError] = useState('');
 
     let addOr = cartProducts;
@@ -165,12 +182,6 @@ export const Cart = () => {
             addOr['totalPrice'] = totalPrice;
         }
         addOr['totalQty'] = totalQty;
-        if (damodetails !== null){
-            addOr['details'] = damodetails;
-            setDamoDetails(null)
-        }else{
-            addOr['details'] = details.label;
-        }
         addOr['latitude'] = latitude;
         addOr['longitude'] = longitude;
         addOr['statusDelivery'] = statusDelivery.label;
@@ -179,8 +190,13 @@ export const Cart = () => {
         addOr['date'] = Moment().format('YYYY-MM-DD,HH:mm:ss');
         addOr['Product_preparation_status'] = 'รอการยืนยัน';
         addOr['deliveryPrice'] = Math.round(deliveryPrice);
-        addOr['totalShipping'] = Math.round(deliveryPrice+totalPrice)
+        if(discountcount > 0){
+            addOr['totalShipping'] = Math.round(deliveryPrice+discountcount)
+        }else{
+            addOr['totalShipping'] = Math.round(deliveryPrice+totalPrice)
+        }
         addOr['All_Name'] = "";
+        addOr['All_Detail'] = "";
         addOr['Fullname'] = user;
         addOr['UUID'] = uuid;
         if(image !== null){
@@ -325,14 +341,17 @@ export const Cart = () => {
             {cartProducts.length > 0 && (
                 <div className="container-fluid">
                     <h1 className="text-center">ตะกร้าสินค้า</h1>
-                    <label className="stepmargin">Step 1 : เลือกจำนวน</label>
+                    <label className="stepmargin">Step 1 : เลือกจำนวนที่ต้องการสั่งซื้อ</label>
                     <div className="products-box">
                         <CartProduct cartProducts={cartProducts}
                             cartProductIncrease ={cartProductIncrease}
                             cartProductDecrease ={cartProductDecrease}
+                            onsetdetail = {onsetdetail}
+
                         />
                     </div>
-                    <label>Step 2 : ตรวจสอบรายละเอียดและชำระเงิน</label>
+                    <label>Step 2 : เลือกรูปแบบการจัดทำ จัดส่ง และชำระเงิน </label>
+                    <label className="redd">&nbsp;**อย่าลืมกดปุ่มยืนยันการชำระเงินเพื่อบันทึกข้อมูล**</label>
                     <div className="summary-box">
                         <h5>ยืนยันคำสั่งซื้อ</h5>
                         <br></br>
@@ -347,13 +366,13 @@ export const Cart = () => {
                                 ยอดรวมหลังหักส่วนลด : <span>{Math.round(discountcount)} บาท</span>
                             </div>
                         )}
-                        <h6>รูปแบบการจัดทำปลา</h6>
+                        {/*<h6>รูปแบบการจัดทำปลา</h6>
                         <Dropdown options={options} onChange={setDetails} placeholder="โปรดเลือกรูปแบบ" />
                         <div>
                         {details.label === 'อื่นๆ' && (
                             <input className="margintop8" type="text" required onChange={(e) => {setDamoDetails(e.target.value)}} value={damodetails}/>
                         )}
-                        </div>
+                        </div>*/}
                         <h6 className="margintop8">จัดส่งหรือรับเอง</h6>
                         <Dropdown options={options1} onChange={setStatusDelivery} value="จัดส่งหรือรับเอง" placeholder="Select an option" />
                         <br></br>
@@ -361,24 +380,31 @@ export const Cart = () => {
                             <div>
                                 ค่าจัดส่ง : <span>{Math.round(deliveryPrice)} บาท</span>
                             </div>
-                            <div>
-                            ยอดรวมทั้งหมด : <span>{Math.round(deliveryPrice+totalPrice)} บาท</span>
-                            </div>
+                            {discountcount > 0 && (
+                                <div>
+                                ยอดรวมทั้งหมด : <span>{Math.round(deliveryPrice+discountcount)} บาท</span>
+                                </div>
+                            )}
+                            {discountcount === 0 && (
+                                <div>
+                                ยอดรวมทั้งหมด : <span>{Math.round(deliveryPrice+totalPrice)} บาท</span>
+                                </div>
+                            )}
                             <div>เลือกรูปแบบการชำระเงิน :</div>
                             <StripeChecout
                             stripeKey = 'pk_test_51LoVhZCFsKrvXBJT6RKf3ve6QMC75rLnFfLvo74ybSoDhTgEBPLUcNQR7HvvJPm4HaDtYHw6cBgwDnQMTKua5OzG00GTHKHzKi'
                             token={handleToken}
-                            billingAddress
-                            shippingAddress
+                            //billingAddress
+                            //shippingAddress
                             name="All Products"
-                            amount={totalPrice * 100}>
+                            /*amount={totalPrice * 100}*/>
                             </StripeChecout>
                             <h6 style={{marginTop:7+"px"}}>หรือ</h6>
                             <div className="btn btn-danger btn-md cart-btn" onClick={() => triggerModal()}>จ่ายด้วย QR</div>
                             </>
                         )}
                         <br></br>
-                        <div className="btn btn-danger btn-md cart-btn" onClick={addToOrder}>เพิ่มในตะกร้า</div>
+                        <div className="btn btn-danger btn-md cart2-btn" onClick={addToOrder}>ยืนยันการชำระเงิน</div>
                     </div>
                 </div>
             )}

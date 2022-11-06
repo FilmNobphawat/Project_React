@@ -3,6 +3,7 @@ import {fs} from '../config/config';
 import { NavbarAdmin } from "./NavbarAdmin";
 import { Slip } from "./Slip";
 import { MapAdmin } from "./MapAdmin";
+import { ShowDetail } from "./ShowDetail";
 
 export const AdminOrder = () => {
 
@@ -23,14 +24,19 @@ export const AdminOrder = () => {
                     ...data
                 })
                 let names = '';
+                let detail = '';
+                console.log(ordersArray[i])
                 for (let j = 0;j < ordersArray[i].number_of_product_types;j++){
                     if(j === 0){
                         names = names+ordersArray[i][j].title;
+                        detail = detail+ordersArray[i][j].title+': '+ordersArray[i][j].details+'  ';
                     }else{
                         names = names+','+ordersArray[i][j].title;
+                        detail = detail+','+ordersArray[i][j].title+': '+ordersArray[i][j].details+'  ';
                     }
                 }
                 ordersArray[i].All_Name = names
+                ordersArray[i].All_Detail = detail
                 i = i+1
                 if(ordersArray.length === snapshot.docs.length){
                     i = 0;
@@ -153,6 +159,7 @@ export const AdminOrder = () => {
     const [showModal,setShowModal] = useState(false);
     const [showMap,setShowMap] = useState(false);
     const [imageSlip,setImageSlip] = useState(false);
+    const [showDetail,setShowDetail] = useState('')
     const [lat,setLat] = useState(0)
     const [long,setLong] = useState(0)
     const triggerModal = (image) => {
@@ -163,6 +170,13 @@ export const AdminOrder = () => {
         setShowMap(true);
         setLat(latitude)
         setLong(longitude)
+    }
+    const triggerDetail = (detail) => {
+        setShowModal(true);
+        setShowDetail(detail)
+    }
+    function onCloseClickDetail(){
+        setShowModal(null)
     }
     function onCloseClick(){
         setShowModal(null)
@@ -200,10 +214,12 @@ export const AdminOrder = () => {
                                             <td className="tdcenter">{info.All_Name}</td>
                                             <td className="tdcenter tdright">{info.totalShipping}</td>
                                             <td className="tdcenter tdright">{info.totalQty}</td>
-                                            <td className="tdcenter">{info.details}</td>
+                                            <td className="tdcenter"><button className="rebuybutton" onClick={() => triggerDetail(info.All_Detail)}>ดูรายการจัดการสินค้า</button></td>
                                             <td className="tdcenter">{info.statusDelivery}</td>
                                             {info.Slip_url !== null && info.statusDelivery === "จัดส่ง" && (
-                                                <td className="tdcenter" onClick={() => triggerModal(info.Slip_url)}>ดูสลิป</td>
+                                                // <td className="tdcenter" onClick={() => triggerModal(info.Slip_url)}>ดูสลิป</td>
+                                                <td className="tdcenter"><button className="rebuybutton" onClick={() => triggerModal(info.Slip_url)}>ดูสลิป</button></td>
+
                                             )}
                                             {info.Slip_url === null && info.statusDelivery === "จัดส่ง" && (
                                                 <td className="tdcenter">จ่ายผ่านบัตรเครดิต</td>
@@ -219,6 +235,9 @@ export const AdminOrder = () => {
                                             )}
                                             {showMap === true && (
                                             <MapAdmin onBgClick={onCloseClickMap} latitude = {lat} longitude = {long}/>
+                                            )}
+                                            {showModal === true && (    
+                                            <ShowDetail onBgClick={onCloseClickDetail} showDetail = {showDetail}/>
                                             )} 
                                         </tr>
                                 )

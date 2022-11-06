@@ -37,7 +37,7 @@ export const QRcode = (props) =>  {
                     <div className="error-msg">{imageError}</div>
                 </>}
                 <br></br>
-                <button className="rebuybutton" onClick={() => {onBgClick(image)}}>Submit</button>
+                <button className="rebuybutton marginbac" onClick={() => {onBgClick(image)}}>Submit</button>
                 <button className="rebuybutton" onClick={onBgClick}>Back</button>
             </div>
         </div>

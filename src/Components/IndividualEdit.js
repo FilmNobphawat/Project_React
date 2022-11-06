@@ -28,17 +28,17 @@ export const IndividualEdit = ({individualEdit}) => {
             </div>
             <div className="product-text title">{individualEdit.title}</div>
             <div className="product-text description">รายละเอียด: {individualEdit.description}</div>
-            <div className="product-text price">ราคา: {individualEdit.price} /กิโลกรัม</div>
+            <div className="product-text price">ราคา: {individualEdit.price} บาท/กิโลกรัม</div>
             <div className="product-text price">จำนวนสินค้า: {individualEdit.numberOfProducts} กิโลกรัม</div>
             <div className="product-bt">
-            <div className="btn btn-danger btn-md cart-btn" onClick={() => triggerModal()}>EDIT</div>
+            <div className="btn btn-danger btn-md cart-btn" onClick={() => triggerModal()}>แก้ไขข้อมูลสินค้า</div>
             {showModal === true && (
                 <Edit onBgClick={onCloseClick} individualEdit = {individualEdit}/>
             )
             }
             </div>
             <div className="product-bt">
-                <div className="btn btn-danger btn-md cart-btn" onClick = {headleProductDelete}>ลบ</div>
+                <div className="btn btn-danger btn-md cart-btn" onClick = {headleProductDelete}>ลบสินค้า</div>
             </div>
         </div>
     )

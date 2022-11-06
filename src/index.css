@@ -12,6 +12,10 @@
     overflow-y: auto;
 }
 
+.redd {
+    color: red;
+}
+
 .btn-box{
     display: flex;
     justify-content: space-between;
@@ -567,6 +571,20 @@ body {
     transition-duration: 0.4s;
 }
 
+.redbutton {
+    background-color: red; /* Blue */
+    color: white;
+    /* padding: 8px; */
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-right: 4px;
+    border-radius: 10px;
+    border-color: white;
+    font-size: 22px;
+}
+.redbutton:hover {
+    transition-duration: 0.4s;
+}
 .refontsize {
     font-size: 30px;
     text-align: center;
@@ -704,3 +722,14 @@ label {
 }
 
 div {background-color: #f8ecec;}
+
+.marginbac{
+    margin-right: 15px ;
+}
+
+.redbox {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    background-color: red;
+}

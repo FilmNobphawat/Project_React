@@ -14,17 +14,22 @@ export const Discount = () => {
         },
         duration: 0,
         timer: null,
+        timediscount: 0,
+        hoursdiscount: 0
       });
 
       const startTimer = start.bind(this);
 
       const minutesTimes = (timerr) =>{
         state.duration = timerr*60*1000
+        state.timediscount = timerr-1
         console.log(state.duration)
       }
 
       const hoursTimes = (timerr) => {
         state.duration = timerr*60*60*1000;
+        state.hoursdiscount = timerr -1
+        state.timediscount = 59
         console.log(state.duration)
       }
 
@@ -44,9 +49,9 @@ export const Discount = () => {
         let minutes = Math.floor((duration / (1000 * 60)) % 60);
         let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
     
-        hours = hours.toString().padStart(2, '0');
-        minutes = minutes.toString().padStart(2, '0');
-        seconds = seconds.toString().padStart(2, '0');
+        hours = state.hoursdiscount-hours.toString().padStart(2, '0');
+        minutes = state.timediscount-minutes.toString().padStart(2, '0');
+        seconds = 59-seconds.toString().padStart(2, '0');
         milliseconds = milliseconds.toString().padStart(3, '0');
     
         return {
@@ -98,8 +103,8 @@ export const Discount = () => {
               
 
               <div className="a3 a1S a5 padmar50px">
-              <div className="summary-box">
-              <label className="">Step 1 : เลือกมูลค่าส่วนลดที่จะใช้</label>
+              <div className="summary-box" align="center">
+              <label className="" align="left">Step 1 : เลือกมูลค่าส่วนลดที่จะใช้</label>
                   <button className="clicked" onClick={() => setDis(10)}>10%</button>
                   <br></br>
                   <button className="clicked" onClick={() => setDis(20)}>20%</button>
@@ -113,7 +118,7 @@ export const Discount = () => {
               <br></br>
               
               <div className="summary-box">
-              <label>Step 2 : เลือกระยะเวลาที่จะใช้ส่วนลด</label>
+              <label>Step 2 : เลือกระยะเวลาที่จะใช้</label>
                   <button className="clicked" onClick={() => minutesTimes(30)}>30 นาที</button>
                   <br></br>
                   <button className="clicked" onClick={() => hoursTimes(1)}>1 ชม.</button>
@@ -131,8 +136,7 @@ export const Discount = () => {
                     <div className="margintop8 refontsize">
                       {state.time.hours}: 
                       {state.time.minutes}: 
-                      {state.time.seconds}. 
-                      {state.time.milliseconds}:
+                      {state.time.seconds}
                     </div>
                 
               </div>

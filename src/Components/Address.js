@@ -278,37 +278,48 @@ const uid = GetUserUid();
     }
   }
 
-  return (
-    <>
-    {/*<Navbar user = {user} totalProducts = {totalProducts}/>*/}
-    <h1>ที่อยู่</h1>
-    <input type="text" onChange={(e) => {setAddress(e.target.value)}}/>
-    <h1>จังหวัด</h1>
-    <input type="text" onChange={(e) => {setProvince(e.target.value)}}/>
-    <h1>ประเทศ</h1>
-    <input type="text" onChange={(e) => {setCountry(e.target.value)}}/>
-    <h1>รหัสไปรษณีย์</h1>
-    <input type="text" onChange={(e) => {setZipcode(e.target.value)}}/>
-      {map && (
-        <div className="app">
-          <div className="search-bar">
-            <h1>Search Location</h1>
-            <input
-              type="text"
-              id="query"
-              onChange={(e) => {
-                SearchMap(e.target.value)
-              }}
-            />
-            <button onClick={() => SearchMap(1)} >Search</button>
-            <button onClick={getLocation}>Location</button>
+    return (
+      <>
+      {/*<Navbar user = {user} totalProducts = {totalProducts}/>*/}
+      <h1 className="text-center stepmargin">กรอกที่อยู่จัดส่งและปักหมุดแผนที่</h1>
+      <label className="margintop8">ชื่อที่อยู่/อาคาร</label>
+      <input type="text" className="form-control" onChange={(e) => {setAddress(e.target.value)}}/>
+      <label className="margintop8">จังหวัด</label>
+      <input type="text" className="form-control" onChange={(e) => {setProvince(e.target.value)}}/>
+      <label className="margintop8">ประเทศ</label>
+      <input type="text" className="form-control" onChange={(e) => {setCountry(e.target.value)}}/>
+      <label className="margintop8">รหัสไปรษณีย์</label>
+      <input type="text" className="form-control" onChange={(e) => {setZipcode(e.target.value)}}/>
+        {map && (
+          <div className="app">
+            <div className="search-bar">
+              <label className="margintop8">ค้นหาตำแหน่งในแผนที่</label>
+              <div align="right">
+              <input
+                className="form-control"
+                type="text"
+                onChange={(e) => {
+                  SearchMap(e.target.value)
+                }}
+              /> 
+              <button  className="margintop8 btn btn-danger btn-md cart-btn" onClick={() => SearchMap(1)} >ค้นหา</button>
+              </div>
+              
+              
+              <div>&nbsp;</div>
+              {/* <button className="btn btn-danger btn-md cart-btn" onClick={() => SearchMap(1)} >Search</button> */}
+              &nbsp; &nbsp; 
+              <button className="btn btn-danger btn-md cart-btn" onClick={getLocation}>ปักหมุดสถานที่ปัจจุบัน</button>
+              <div>&nbsp;</div>
+            </div>
+            <div ref={mapElement} className="map" />
+            <div>
+              <div>&nbsp;</div>
+              <button className="btn btn-danger btn-md cart-btn" onClick={handleAddress}>บันทึกข้อมูลที่อยู่</button>
+              <div>&nbsp;</div>
+            </div>
           </div>
-          <div ref={mapElement} className="map" />
-          <div>
-            <button onClick={handleAddress}>Submit</button>
-          </div>
-        </div>
-      )}
-    </>
-  )
+        )}
+      </>
+    )
 }

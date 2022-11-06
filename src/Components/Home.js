@@ -85,6 +85,7 @@ export const Home = () => {
             Pro.numberOfProducts = Pro.numberOfProducts-1
             Pro['qty']=1;
             Pro['TotalProductPrice'] = Pro.qty*Pro.price;
+            Pro['details'] = null;
             firebase.firestore().collection('users').doc(uid).collection('Cart').doc(product.ID).set(Pro).then(() => {
                 console.log('successfully added to cart')
             })

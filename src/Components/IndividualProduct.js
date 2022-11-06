@@ -12,7 +12,7 @@ export const IndividualProduct = ({individualProduct, addToCart}) => {
             </div>
             <div className="product-text title">{individualProduct.title}</div>
             <div className="product-text description">รายละเอียด: {individualProduct.description}</div>
-            <div className="product-text price">ราคา: {individualProduct.price}/กิโลกรัม</div>
+            <div className="product-text price">ราคา: {individualProduct.price} บาท/กิโลกรัม</div>
             {individualProduct.numberOfProducts > 0 && (<>
                 <div className="product-text price">สถานะสินค้า: ยังมีสินค้า</div>
                 <div className="product-bt">

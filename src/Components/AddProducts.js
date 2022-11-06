@@ -93,11 +93,11 @@ export const AddProducts = () => {
                     <input type="text" className='form-control' required
                     onChange={(e) => setDescription(e.target.value)} value = {description}></input>
                     <br></br>
-                    <label>ราคาสินค้า</label>
+                    <label>ราคาสินค้า (บาท/กิโลกรัม)</label>
                     <input type="number" className='form-control' required
                     onChange={(e) => setPrice(e.target.value)} value = {price}></input>
                     <br></br>
-                    <label>จำนวนสินค้า</label>
+                    <label>จำนวนสินค้า (กิโลกรัม)</label>
                     <input type="number" className='form-control' required
                     onChange={(e) => setNumberOfProducts(e.target.value)} value = {numberOfProducts}></input>
                     <br></br>

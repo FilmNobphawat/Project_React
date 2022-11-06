@@ -1,11 +1,12 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import Icon from "react-icons-kit";
 import {plus} from 'react-icons-kit/feather/plus'
 import {minus} from 'react-icons-kit/feather/minus'
 import {auth, fs} from '../config/config';
 import firebase from 'firebase/compat/app'
+import Dropdown from 'react-dropdown';
 
-export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProductDecrease}) =>{
+export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProductDecrease,onsetdetail}) =>{
 
     const headleCartProductIncrease = () => {
         cartProductIncrease(cartProduct);
@@ -14,7 +15,6 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
     const headleCartProductDecrease = () => {
         cartProductDecrease(cartProduct);
     }
-
 
     const headleCartProductDelete = () => {
         auth.onAuthStateChanged(user => {
@@ -29,6 +29,15 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
         })
     }
 
+    const options  = ['ตัวหัวผ่าท้อง','ถอดเกล็ดอย่างเดียว','ผ่าท้องอย่างเดียว','ไม่ต้องทำอะไร','อื่นๆ']
+    const [details, setDetails] = useState('');
+    const [damodetails, setDamoDetails] = useState(null);
+
+    const test = (test1) => {
+        setDetails(test1)
+        onsetdetail(test1,cartProduct)
+    }
+
     return( 
         <div className="product">
             <div className="product-img">
@@ -36,11 +45,12 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
             </div>
             <div className="product-text title">ชื่อ: {cartProduct.title}</div>
             <div className="product-text description">รายละเอียด: {cartProduct.description}</div>
-            <div className="product-text price">ราคา: {cartProduct.price}/กิโลกรัม</div>
+            <div className="product-text price">ราคา: {cartProduct.price} บาท/กิโลกรัม</div>
             <div className="product-quantity"> 
                 
                 {cartProduct.numberOfProducts === 0 && (<><div class="product-quantity-c">
-		            <a onClick = {headleCartProductDecrease}>&times;</a>
+		            <a onClick = {headleCartProductDecrease}>⬅️</a>
+                    {/* <button onClick = {headleCartProductDecrease} className="redbutton">-</button> */}
 
                     จำนวนสินค้าไม่พอ
 
@@ -69,6 +79,16 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
 
 
             <div className="product-text cart-price">ราคาสุทธิ {cartProduct.TotalProductPrice} บาท</div>
+            <h6>รูปแบบการจัดทำปลา</h6>
+                <Dropdown options={options} onChange={test} placeholder="โปรดเลือกรูปแบบ" />
+                <div>
+                {details.label === 'อื่นๆ' && (
+                    <input className="margintop8" type="text" required onChange={(e) => {setDamoDetails(e.target.value)}} value={damodetails}/>
+                )}
+                {details.label === 'อื่นๆ' && (
+                    <button onClick={() => test(damodetails)}>ยืนยัน</button>
+                )}
+                </div>
             <div className="product-bt">
                 <div className="btn btn-danger btn-md cart-btn" onClick = {headleCartProductDelete}>นำออกจากตะกร้า</div>
             </div>
