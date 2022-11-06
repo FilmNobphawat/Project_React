@@ -81,7 +81,7 @@ const uid = GetUserUid();
       setProvince('');
       setCountry('');
       setZipcode('');
-      navigate('/');
+      navigate('/login');
     })
   }
 
