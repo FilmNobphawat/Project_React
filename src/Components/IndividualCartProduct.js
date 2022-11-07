@@ -89,6 +89,7 @@ export const IndividualCartProduct =({cartProduct,cartProductIncrease,cartProduc
                     <button onClick={() => test(damodetails)}>ยืนยัน</button>
                 )}
                 </div>
+            <h6> </h6>
             <div className="product-bt">
                 <div className="btn btn-danger btn-md cart-btn" onClick = {headleCartProductDelete}>นำออกจากตะกร้า</div>
             </div>

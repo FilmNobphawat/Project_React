@@ -341,7 +341,7 @@ export const Cart = () => {
             {cartProducts.length > 0 && (
                 <div className="container-fluid">
                     <h1 className="text-center">ตะกร้าสินค้า</h1>
-                    <label className="stepmargin">Step 1 : เลือกจำนวนที่ต้องการสั่งซื้อ</label>
+                    <label className="stepmargin">Step 1 : เลือกจำนวนที่ต้องการสั่งซื้อ และเลือกรูปแบบการจัดทำ</label>
                     <div className="products-box">
                         <CartProduct cartProducts={cartProducts}
                             cartProductIncrease ={cartProductIncrease}
@@ -350,7 +350,7 @@ export const Cart = () => {
 
                         />
                     </div>
-                    <label>Step 2 : เลือกรูปแบบการจัดทำ จัดส่ง และชำระเงิน </label>
+                    <label>Step 2 : เลือกรูปแบบการจัดส่ง และชำระเงิน </label>
                     <label className="redd">&nbsp;**อย่าลืมกดปุ่มยืนยันการชำระเงินเพื่อบันทึกข้อมูล**</label>
                     <div className="summary-box">
                         <h5>ยืนยันคำสั่งซื้อ</h5>
